@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="kotidbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Halytys">
+          <Key>
+            <PropertyRef Name="HalytinId" />
+          </Key>
+          <Property Name="HalytinId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HalytinStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Huone">
+          <Key>
+            <PropertyRef Name="HuoneId" />
+          </Key>
+          <Property Name="HuoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Huonenimi" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Valostatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lammitys">
+          <Key>
+            <PropertyRef Name="LammitinId" />
+          </Key>
+          <Property Name="LammitinId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NykyLampotila" Type="int" Nullable="false" />
+          <Property Name="LampotilaAsetus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sauna">
+          <Key>
+            <PropertyRef Name="SaunaId" />
+          </Key>
+          <Property Name="SaunaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaunaNimi" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="VirtaStatus" Type="int" Nullable="false" />
+          <Property Name="LämpöTila" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="kotidbModelStoreContainer">
+          <EntitySet Name="Halytys" EntityType="Self.Halytys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Huone" EntityType="Self.Huone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lammitys" EntityType="Self.Lammitys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sauna" EntityType="Self.Sauna" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="kotidbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Halyty">
+          <Key>
+            <PropertyRef Name="HalytinId" />
+          </Key>
+          <Property Name="HalytinId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HalytinStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Huone">
+          <Key>
+            <PropertyRef Name="HuoneId" />
+          </Key>
+          <Property Name="HuoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Huonenimi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Valostatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lammity">
+          <Key>
+            <PropertyRef Name="LammitinId" />
+          </Key>
+          <Property Name="LammitinId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NykyLampotila" Type="Int32" Nullable="false" />
+          <Property Name="LampotilaAsetus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sauna">
+          <Key>
+            <PropertyRef Name="SaunaId" />
+          </Key>
+          <Property Name="SaunaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaunaNimi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VirtaStatus" Type="Int32" Nullable="false" />
+          <Property Name="LämpöTila" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="kotidbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Halytys" EntityType="Self.Halyty" />
+          <EntitySet Name="Huones" EntityType="Self.Huone" />
+          <EntitySet Name="Lammitys" EntityType="Self.Lammity" />
+          <EntitySet Name="Saunas" EntityType="Self.Sauna" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="kotidbModelStoreContainer" CdmEntityContainer="kotidbEntities">
+          <EntitySetMapping Name="Halytys">
+            <EntityTypeMapping TypeName="kotidbModel.Halyty">
+              <MappingFragment StoreEntitySet="Halytys">
+                <ScalarProperty Name="HalytinId" ColumnName="HalytinId" />
+                <ScalarProperty Name="HalytinStatus" ColumnName="HalytinStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Huones">
+            <EntityTypeMapping TypeName="kotidbModel.Huone">
+              <MappingFragment StoreEntitySet="Huone">
+                <ScalarProperty Name="HuoneId" ColumnName="HuoneId" />
+                <ScalarProperty Name="Huonenimi" ColumnName="Huonenimi" />
+                <ScalarProperty Name="Valostatus" ColumnName="Valostatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lammitys">
+            <EntityTypeMapping TypeName="kotidbModel.Lammity">
+              <MappingFragment StoreEntitySet="Lammitys">
+                <ScalarProperty Name="LammitinId" ColumnName="LammitinId" />
+                <ScalarProperty Name="NykyLampotila" ColumnName="NykyLampotila" />
+                <ScalarProperty Name="LampotilaAsetus" ColumnName="LampotilaAsetus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saunas">
+            <EntityTypeMapping TypeName="kotidbModel.Sauna">
+              <MappingFragment StoreEntitySet="Sauna">
+                <ScalarProperty Name="SaunaId" ColumnName="SaunaId" />
+                <ScalarProperty Name="SaunaNimi" ColumnName="SaunaNimi" />
+                <ScalarProperty Name="VirtaStatus" ColumnName="VirtaStatus" />
+                <ScalarProperty Name="LämpöTila" ColumnName="LämpöTila" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
