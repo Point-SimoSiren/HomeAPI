@@ -29,5 +29,10 @@ namespace HomeAPI.Models
         public virtual DbSet<Huone> Huones { get; set; }
         public virtual DbSet<Lammity> Lammitys { get; set; }
         public virtual DbSet<Sauna> Saunas { get; set; }
+        public virtual DbSet<Yhteystiedot> Yhteystiedot { get; set; }
+        public virtual DbSet<Henkilot> Henkilot { get; set; }
+        public virtual DbSet<Projektit> Projektit { get; set; }
+        public virtual DbSet<Tunnit> Tunnit { get; set; }
+        public virtual DbSet<Postitoimipaikat> Postitoimipaikat { get; set; }
     }
 }

@@ -113,6 +113,9 @@
     <Compile Include="Models\Halyty.cs">
       <DependentUpon>KotiModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Henkilot.cs">
+      <DependentUpon>KotiModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Huone.cs">
       <DependentUpon>KotiModel.tt</DependentUpon>
     </Compile>
@@ -134,7 +137,19 @@
     <Compile Include="Models\Lammity.cs">
       <DependentUpon>KotiModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Postitoimipaikat.cs">
+      <DependentUpon>KotiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Projektit.cs">
+      <DependentUpon>KotiModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Sauna.cs">
+      <DependentUpon>KotiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tunnit.cs">
+      <DependentUpon>KotiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Yhteystiedot.cs">
       <DependentUpon>KotiModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

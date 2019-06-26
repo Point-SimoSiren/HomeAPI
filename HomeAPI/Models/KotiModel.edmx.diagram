@@ -9,6 +9,11 @@
         <EntityTypeShape EntityType="kotidbModel.Huone" Width="1.5" PointX="3.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="kotidbModel.Lammity" Width="1.5" PointX="5.375" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="kotidbModel.Sauna" Width="1.5" PointX="7.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kotidbModel.Yhteystiedot" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="kotidbModel.Henkilot" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="kotidbModel.Projektit" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="kotidbModel.Tunnit" Width="1.5" PointX="8.375" PointY="4" />
+        <EntityTypeShape EntityType="kotidbModel.Postitoimipaikat" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

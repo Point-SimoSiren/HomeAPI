@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="kotidbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Yhteystiedot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Puhelin" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Halytys">
           <Key>
             <PropertyRef Name="HalytinId" />
@@ -37,11 +46,51 @@
           <Property Name="VirtaStatus" Type="int" Nullable="false" />
           <Property Name="LämpöTila" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Henkilot">
+          <Key>
+            <PropertyRef Name="HenkiloId" />
+          </Key>
+          <Property Name="HenkiloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etunimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sukunimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Osoite" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Esimies" Type="int" Nullable="false" />
+          <Property Name="Postinumero" Type="nchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Postitoimipaikat">
+          <Key>
+            <PropertyRef Name="Postinumero" />
+          </Key>
+          <Property Name="Postinumero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Postitoimipaikka" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projektit">
+          <Key>
+            <PropertyRef Name="ProjektiId" />
+          </Key>
+          <Property Name="ProjektiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nimi" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tunnit">
+          <Key>
+            <PropertyRef Name="Tunti_id" />
+          </Key>
+          <Property Name="Tunti_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Projekti_id" Type="int" />
+          <Property Name="Henkilo_id" Type="int" />
+          <Property Name="Pvm" Type="datetime" />
+          <Property Name="Tunnit" Type="int" />
+        </EntityType>
         <EntityContainer Name="kotidbModelStoreContainer">
+          <EntitySet Name="Yhteystiedot" EntityType="Self.Yhteystiedot" Schema="con" store:Type="Tables" />
           <EntitySet Name="Halytys" EntityType="Self.Halytys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Huone" EntityType="Self.Huone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lammitys" EntityType="Self.Lammitys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sauna" EntityType="Self.Sauna" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Henkilot" EntityType="Self.Henkilot" Schema="proj" store:Type="Tables" />
+          <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" Schema="proj" store:Type="Tables" />
+          <EntitySet Name="Projektit" EntityType="Self.Projektit" Schema="proj" store:Type="Tables" />
+          <EntitySet Name="Tunnit" EntityType="Self.Tunnit" Schema="proj" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -84,7 +133,56 @@
           <EntitySet Name="Huones" EntityType="Self.Huone" />
           <EntitySet Name="Lammitys" EntityType="Self.Lammity" />
           <EntitySet Name="Saunas" EntityType="Self.Sauna" />
+          <EntitySet Name="Yhteystiedot" EntityType="kotidbModel.Yhteystiedot" />
+          <EntitySet Name="Henkilot" EntityType="kotidbModel.Henkilot" />
+          <EntitySet Name="Projektit" EntityType="kotidbModel.Projektit" />
+          <EntitySet Name="Tunnit" EntityType="kotidbModel.Tunnit" />
+          <EntitySet Name="Postitoimipaikat" EntityType="kotidbModel.Postitoimipaikat" />
         </EntityContainer>
+        <EntityType Name="Yhteystiedot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Puhelin" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Henkilot">
+          <Key>
+            <PropertyRef Name="HenkiloId" />
+          </Key>
+          <Property Name="HenkiloId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etunimi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sukunimi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Osoite" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Esimies" Type="Int32" Nullable="false" />
+          <Property Name="Postinumero" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Projektit">
+          <Key>
+            <PropertyRef Name="ProjektiId" />
+          </Key>
+          <Property Name="ProjektiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nimi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tunnit">
+          <Key>
+            <PropertyRef Name="Tunti_id" />
+          </Key>
+          <Property Name="Tunti_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Projekti_id" Type="Int32" />
+          <Property Name="Henkilo_id" Type="Int32" />
+          <Property Name="Pvm" Type="DateTime" Precision="3" />
+          <Property Name="Tunnit1" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Postitoimipaikat">
+          <Key>
+            <PropertyRef Name="Postinumero" />
+          </Key>
+          <Property Name="Postinumero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Postitoimipaikka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -127,6 +225,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Yhteystiedot">
+            <EntityTypeMapping TypeName="kotidbModel.Yhteystiedot">
+              <MappingFragment StoreEntitySet="Yhteystiedot">
+                <ScalarProperty Name="Puhelin" ColumnName="Puhelin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Henkilot">
+            <EntityTypeMapping TypeName="kotidbModel.Henkilot">
+              <MappingFragment StoreEntitySet="Henkilot">
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+                <ScalarProperty Name="Esimies" ColumnName="Esimies" />
+                <ScalarProperty Name="Osoite" ColumnName="Osoite" />
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+                <ScalarProperty Name="HenkiloId" ColumnName="HenkiloId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projektit">
+            <EntityTypeMapping TypeName="kotidbModel.Projektit">
+              <MappingFragment StoreEntitySet="Projektit">
+                <ScalarProperty Name="Nimi" ColumnName="Nimi" />
+                <ScalarProperty Name="ProjektiId" ColumnName="ProjektiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tunnit">
+            <EntityTypeMapping TypeName="kotidbModel.Tunnit">
+              <MappingFragment StoreEntitySet="Tunnit">
+                <ScalarProperty Name="Tunnit1" ColumnName="Tunnit" />
+                <ScalarProperty Name="Pvm" ColumnName="Pvm" />
+                <ScalarProperty Name="Henkilo_id" ColumnName="Henkilo_id" />
+                <ScalarProperty Name="Projekti_id" ColumnName="Projekti_id" />
+                <ScalarProperty Name="Tunti_id" ColumnName="Tunti_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postitoimipaikat">
+            <EntityTypeMapping TypeName="kotidbModel.Postitoimipaikat">
+              <MappingFragment StoreEntitySet="Postitoimipaikat">
+                <ScalarProperty Name="Postitoimipaikka" ColumnName="Postitoimipaikka" />
+                <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -141,7 +288,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
